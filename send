@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+import sys
+import time
+import RPi.GPIO as GPIO
+
+LED_PIN = 17
+TIME_UNIT = 0.14
+
+morse_table = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",                            #A-I
+               ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",                          #J-R
+               "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..",                                 #S-Z
+               "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."] #0-9
+
+def char_to_morse (letter):
+    if letter.isalpha():
+        l = letter.upper()
+        return morse_table[ord(l)-ord('A')];
+    elif letter.isdigit():
+        return morse_table[ord(letter)-ord('0')+26]
+    elif letter == ' ':
+        return "/"
+    else: return "0"
+
+def morse_to_led (morse):
+    for i in morse:
+        if (i == '.'):
+            GPIO.output(LED_PIN, 1)
+            time.sleep(TIME_UNIT)
+            GPIO.output(LED_PIN, 0)
+            time.sleep(TIME_UNIT)
+        elif (i == '-'):
+            GPIO.output(LED_PIN, 1)
+            time.sleep(TIME_UNIT*3)
+            GPIO.output(LED_PIN, 0)
+            time.sleep(TIME_UNIT)
+        elif (i == '/'):
+            time.sleep(TIME_UNIT*4)
+        else: pass
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print("Not enough arguments")
+        sys.exit(1)
+    times = int(sys.argv[1])
+    if (times <= 0): 
+        print("Not valid number")
+        sys.exit(1)
+    message = sys.argv[2]
+    
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(LED_PIN, GPIO.OUT)
+
+    for _ in range(times):
+        for j in (message):
+            morse_to_led(char_to_morse(j))
+            time.sleep(TIME_UNIT*3)
+        time.sleep(TIME_UNIT*20)      
+    GPIO.output(LED_PIN, 0)
+    GPIO.cleanup()
