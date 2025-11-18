@@ -26,7 +26,7 @@ The Raspberry Pi 4 converts stdin input (a string) into Morse code using an LED.
 - Breadboard, wires, resistors (330, 10k ohms), LED, photodiode, female header pins, and male header pins
 
 ## Phase 1: Hardware Implementation
-Raspberry Pi side: GPIO 17 -------> Resistor (330 ohm) -------> LED -------> GND
+Raspberry Pi side: GPIO 17 -------> Resistor (330 ohm) -------> LED -------> GND <br/>
 ESP32 side: 3v3 -------> Photodiode (-) -------> Photodiode (+) -------> GPIO 3 (ADC1-3), Resistor (10k ohm) -------> GND
 
 ## Phase 2: String to Morse Code (STDIN to LED)
