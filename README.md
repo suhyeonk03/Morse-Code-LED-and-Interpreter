@@ -3,9 +3,9 @@
 Raspberry PI4 converts stdin input (string) into morse code via LED. And photodiode connected to ESP32 reads condition of LED (ON or OFF) to convert morse code into the string. 
 
 <p align="center">
-  <img src="https://github.com/suhyeonk03/Morse-Code-LED-and-Interpreter/blob/main/i1.jpg" alt="Hardware Implementation" width="300" height="250">
+  <img src="https://github.com/suhyeonk03/Morse-Code-LED-and-Interpreter/blob/main/i1.jpg" alt="Hardware Implementation" width="350" height="300">
   <img src="https://github.com/suhyeonk03/Morse-Code-LED-and-Interpreter/blob/main/i2.jpg" alt="Sender (Raspberry PI4)" width="300" height="250">
-  <img src="https://github.com/suhyeonk03/Morse-Code-LED-and-Interpreter/blob/main/i3.jpg" alt="Receiver (ESP32)" width="300" height="250">
+  <img src="https://github.com/suhyeonk03/Morse-Code-LED-and-Interpreter/blob/main/i3.jpg" alt="Receiver (ESP32)" width="350" height="300">
 </p>
 
 ## Used Libraries (C, ESP32)
