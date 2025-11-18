@@ -57,7 +57,7 @@ void app_main(void) {
 	int signal_duration = 0;
 	int gap_duration = 0;
 	char morse_buffer[10] = {0};
-        int morse_index = 0;
+    int morse_index = 0;
 	char decoded = '\0';
 	char string[30] = {'\0'};
 
@@ -73,13 +73,13 @@ void app_main(void) {
 			if (prev_state != 1) {
 				if (gap_duration > WORD_SPACE) {
    					if (morse_index > 0) {
-      					  	decoded = morse_to_char(morse_buffer);
-     				  		addChar(string, decoded);
+      					decoded = morse_to_char(morse_buffer);
+     				  	addChar(string, decoded);
 						morse_index = 0;
-       						morse_buffer[0] = '\0';
-    					}
+       					morse_buffer[0] = '\0';
+    				}
    					decoded = ' ';
-				        addChar(string, decoded);	
+				    addChar(string, decoded);	
 				}
 				else if (gap_duration > LETTER_SPACE) {
 					if (morse_index > 0) {
@@ -113,12 +113,11 @@ void app_main(void) {
 
 		prev_state = state;
 		if (state == 0 && morse_index > 0 && gap_duration > NEW_LINE_SPACE) {
-    			
 			decoded = morse_to_char(morse_buffer);
 			addChar(string, decoded);
-                        printf("%s\n", string);
-    			morse_index = 0;
-    			morse_buffer[0] = '\0';
+            printf("%s\n", string);
+    		morse_index = 0;
+    		morse_buffer[0] = '\0';
 			string[0] = '\0';
 		}
 		vTaskDelay(pdMS_TO_TICKS(WHILE_LOOP_DELAY));
